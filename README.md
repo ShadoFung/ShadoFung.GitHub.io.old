@@ -1,81 +1,112 @@
-Materialize - jekyll
-==============
+# Jekyll Material Theme
 
+A Jekyll Theme based on [Material Design](https://material.io/) using [Materialize](http://materializecss.com/).
 
-## Introducton
+[![Gem Version](https://badge.fury.io/rb/jekyll-material-theme.svg)](https://badge.fury.io/rb/jekyll-material-theme)
 
-This jekyll theme is based on [materialize](http://materializecss.com).
-(NOTE: this theme is only made for my own, but you can modify it freely.)
+<a href="https://imgur.com/3PKshVo"><img src="https://i.imgur.com/3PKshVo.gif" title="source: imgur.com" /></a>
 
-[Open demo](https://mumuxme.github.io/materialize-jekyll/)
+<a href="https://imgur.com/hlB1MOw"><img src="https://i.imgur.com/hlB1MOw.gif" title="source: imgur.com" /></a>
 
+<a href="https://imgur.com/D9DSyuk"><img src="https://i.imgur.com/D9DSyuk.gif" title="source: imgur.com" /></a>
 
-## Getting start
+##### Cookie Policy
 
-#### Install
+If you use cookies on your site, or choose to use Google Analytics, you're able to notify visitors with this prompt. The ```Thanks!``` dialog message can be customised in your ```_config.yml``` file.
 
-You may need some dev headers, for debian/linux, just run:
+<a href="https://imgur.com/O7sICnY"><img src="https://i.imgur.com/O7sICnY.gif" title="source: imgur.com" /></a>
 
-```
-# apt-get install liblzma-dev zlib1g-dev
-```
+### [Live Demo](https://jameshamann.com)
 
-(Other dependencies may also needed.)
+## Installation
 
-```
-$ git clone https://github.com/mumuxme/materialize-jekyll
-$ cd materialize-jekyll
-$ bundle install
+Add this line to your Jekyll site's `Gemfile`:
+
+```ruby
+gem "jekyll-material-theme"
 ```
 
-#### Run
+And add this line to your Jekyll site's `_config.yml`:
 
-1. Modify `_config.yml`, `about.md` and other(whatever you need).
-2. You can add a `favicon.ico` file in the project root directory.
-3. If you want to use google analytics, add your `google-analytics.js` into `js` directory.
-
-Then:
-
-```
-$ bundle exec jekyll s
-
-# or start with draft
-$ bundle exec jekyll s --drafts
+```yaml
+theme: jekyll-material-theme
 ```
 
-## Or start with docker
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install jekyll-material-theme
+
+## Usage
+
+The ```_config.yml``` file has the following options.
+
+```yaml
+title: Your awesome title
+name: Your Name
+email: your-email@example.com
+description: Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+
+parallax_image_one: assets/images/startup3.jpg # These are the images used for the parallax background
+parallax_image_two: assets/images/startup3.jpg
+
+project_one: "First Project"
+project_one_description: Describe your project!
+project_one_url: https://github.com/jameshamann/jekyll-material-theme
+project_one_icon: location_on # these are from materiailize css, the full collection is here: http://materializecss.com/icons.html
+
+project_two: Second Project
+project_two_description: Describe your project!
+project_two_url: https://github.com/jameshamann/jekyll-material-theme
+project_two_icon: photo_camera
+
+
+project_three: Third Project
+project_three_description: Describe your project!
+project_three_url: https://github.com/jameshamann/jekyll-material-theme
+project_three_icon: hotel
+
+
+project_four: Fourth Project
+project_four_description: Describe your project!
+project_four_url: https://github.com/jameshamann/jekyll-material-theme
+project_four_icon: restaurant
+
+
+project_button: Github
+
+github: https://github.com/jameshamann/jekyll-material-theme
+medium: https://medium.com
+
+baseurl: / # If your site is located at /blog or /home, change it here
+url: http://localhost:4000/ # The URL of your site
+
+google_analytics_tracking_id: # This looks something like UA-000000000-0 Head over to https://analytics.google.com/ to setup.
+
+cookie_accept_message: Thanks! # The pop-up dialog that appears after accepting the cookie notice.
+
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+plugins:
+  - jekyll-feed
+  - jekyll-assets
+  - jekyll-minifier
 
 ```
-cd materialize-jekyll
 
-# export GEM_MIRROR=mirror.https://rubygems.org
-export GEM_MIRROR='Your-ruby-gem-mirror'
+## Contributing
 
-make build
-make run
-```
+Bug reports and pull requests are welcome on GitHub at https://github.com/jameshamann/jekyll-material-theme. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
+## Development
 
-## Other
-
-#### Emoji
-
-You can use GitHub-flavored emoji. See [emoji cheat sheet](http://www.webpagefx.com/tools/emoji-cheat-sheet/)
-
-#### TODO
-
-- Add comment. (???)
-- Add options to choose self host or cdn.
-
+To set up your environment to develop and further customise this theme, fork the repo and explore the ```_assets``` directory, which includes all the ```css, js``` and ```font``` folders.
 
 ## License
 
-[GNU GPL v3](http://www.gnu.org/licenses/).
-
-Others:
-
-- jquery: <https://jquery.com>
-- materialize: <http://materializecss.com>
-- material-scrolltop: [bartholomej/material-scrolltop](https://github.com/bartholomej/material-scrolltop)
-- material design icon: [Templarian/MaterialDesign](https://github.com/Templarian/MaterialDesign) or <https://materialdesignicons.com/getting-started>
-- GitHub-flavored emoji plugin: [jemoji](https://github.com/jekyll/jemoji)
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

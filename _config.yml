@@ -1,67 +1,53 @@
-# Site settings
+title: Your awesome title
+name: Your Name
+email: your-email@example.com
+description: Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 
-author: Yourname
-email: example@email.com
-twitter_username: twitter
-github_username:  github
-googleplus_username: google
+parallax_image_one: assets/images/startup3.jpg # These are the images used for the parallax background
+parallax_image_two: assets/images/startup3.jpg
 
-head-title: Your blog
-title: Your blog
+project_one: "First Project"
+project_one_description: Describe your project!
+project_one_url: https://github.com/jameshamann/jekyll-material-theme
+project_one_icon: location_on
 
-baseurl: "/materialize-jekyll"    # the subpath of your site, "/blog"
-url: ""
-
-# footer 
-description: "I know that what I'm doing looks stupid, but I'm a big boy and really want to do this."
-
-favo: "春梦随云散，飞花逐水流"
-descrpt: "“巧者劳而智者忧，无能者无所求，饱食而遨游，泛若不系之舟”  ——《南华经》"
+project_two: Second Project
+project_two_description: Describe your project!
+project_two_url: https://github.com/jameshamann/jekyll-material-theme
+project_two_icon: photo_camera
 
 
-#
+project_three: Third Project
+project_three_description: Describe your project!
+project_three_url: https://github.com/jameshamann/jekyll-material-theme
+project_three_icon: hotel
+
+
+project_four: Fourth Project
+project_four_description: Describe your project!
+project_four_url: https://github.com/jameshamann/jekyll-material-theme
+project_four_icon: restaurant
+
+
+project_button: Github
+
+github: https://github.com/jameshamann/jekyll-material-theme
+medium: https://medium.com
+
+baseurl: # if your site is located at /blog or /home, enter it here, otherwise leave it as '/'
+url: http://localhost:4000/ #the url of your site
+
+google_analytics_tracking_id: # This looks something like UA-000000000-0 Head over to https://analytics.google.com/ to setup.
+
+cookies_banner: show # The value "show" will show the cookies banner, the value "none" will hide the banner.
+
+cookie_accept_message: Thanks!
+
 # Build settings
-#
-
-#exclude: [vendor]
-
 markdown: kramdown
-highlighter: rouge
-
-kramdown:
-  input: GFM
-  hard_wrap: false
-  highlight: true
-  auto_ids:  true
-
-sass:
-  style: compressed
-
-permalink: /posts/:categories/:title.html
-
-paginate: 7
-#paginate_path: 'page/:num'
-
-gems: [jekyll-paginate, jekyll-last-modified-at, jemoji]
-
-
-#
-# Custom
-#
-
-# Color
-# All css class, see: http://materializecss.com/color.html
-header-color: "indigo lighten-1"
-head-theme-color: "#5c6bc0"     # MUST in hex format, may the same as header-color. This color is for android chrome browser.
-
-footer-color: "indigo lighten-1"
-footer-button-color: "indigo lighten-2"
-footer-link-color: "red-text text-accent-1"
-
-share-button-color: "pink"
-share-button-small-color: ""
-
-
-##
-#excerpt_separator: <!-- excerpt_end -->       # for post.excerpt
-
+# theme: minima
+permalink: pretty
+plugins:
+  - jekyll-feed
+  - jekyll-assets
+  - jekyll-minifier
