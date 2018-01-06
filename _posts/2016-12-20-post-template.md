@@ -6,6 +6,8 @@ categories: "readme"
 tags: [jekyll, material design]
 author: Lambda
 comment: false
+url: www.baidu.com
+
 ---
 
 This is a documentation of posts.
