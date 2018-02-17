@@ -2,7 +2,6 @@
 layout: post
 title:  "OrangutanBaby!"
 date:   2018-02-18 21:08:08 +0000
-image: /assets/images/blog/OrangutanBaby_ZH-CN9942512858_1920x1080.jpg
 
 ---
 智商超高的大家伙 勒塞尔火山国家公园内的一只小苏门答腊猩猩，印度尼西亚 (© Cyril Ruoso/Minden Pictures)
