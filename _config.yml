@@ -1,14 +1,14 @@
 # Site
-title:              Moon
+title:              冯明东
 bio:                'Minimal, one column jekyll theme.'
-description:        "Moon is a minimal, one column jekyll theme for your blog."
+description:        "逢山开路 遇水架桥"
 reading_time:       true
 words_per_minute:   200
 logo:               'assets/img/logo.png'
 background:         'assets/img/placeholder-big.jpg'
 tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
 locale:             en_US
-url:                https://taylantatli.github.io/Moon
+url:                https://shadofung.github.io/
 
 # Jekyll
 permalink:          /:title/
