@@ -3,7 +3,7 @@ layout: post
 title: "八大排序"
 date: 2017-06-18
 excerpt: "八大常用排序算法"
-tags: [sample post]
+tags: [算法]
 comments: true
 ---
 
