@@ -3,8 +3,8 @@ name: Shado
 email: ShadoFung@gmail.com
 description: 新时代是奋斗者的时代，奋斗者是精神最为富足的人，也是最懂得幸福、最享受幸福的人，只有奋斗的人生才称得上幸福的人生。
 
-parallax_image_one: assets/images/grey.jpg # These are the images used for the parallax background startup3
-parallax_image_two: assets/images/grey.jpg
+parallax_image_one: assets/images/startup3.jpg # These are the images used for the parallax background
+parallax_image_two: assets/images/startup3.jpg
 
 project_one: "First Project"
 project_one_description: Describe your project!
