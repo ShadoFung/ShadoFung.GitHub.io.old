@@ -1,5 +1,5 @@
+Gemfile.lock
+_site/
+_posts/
+category/
 *~
-.sass-cache/
-_site
-google-analytics.js
-.env
