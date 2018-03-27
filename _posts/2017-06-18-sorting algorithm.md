@@ -16,22 +16,22 @@ comments: true
 2. **过程**
 3. **平均时间复杂度 O(n²)**
 4. **Java代码实现**
-{% highlight java %}
-public static void  insert_sort(int array[],int lenth){
-
-   int temp;
-
-   for(int i=0;i<lenth-1;i++){
-       for(int j=i+1;j>0;j--){
-           if(array[j] < array[j-1]){
-               temp = array[j-1];
-               array[j-1] = array[j];
-               array[j] = temp;
-           }else{         //不需要交换
-               break;
-           }
-       }
-   }
-}
-{% endhighlight %}
+	{% highlight java %}
+	public static void  insert_sort(int array[],int lenth){
+	
+	   int temp;
+	
+	   for(int i=0;i<lenth-1;i++){
+	       for(int j=i+1;j>0;j--){
+	           if(array[j] < array[j-1]){
+	               temp = array[j-1];
+	               array[j-1] = array[j];
+	               array[j] = temp;
+	           }else{         //不需要交换
+	               break;
+	           }
+	       }
+	   }
+	}
+	{% endhighlight %}
 
