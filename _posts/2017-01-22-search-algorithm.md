@@ -46,7 +46,7 @@ public int SequenceSearch(int a[], int value, int n) {
 	}
     return -1;
 }
-{% endlight %}
+{% endhighlight %}
 ## 2.二分查找 ##
 **说明：元素必须是有序的，如果是无序的则要先进行排序操作。**
 
@@ -92,7 +92,7 @@ public int BinarySearch2(int a[], int value, int low, int high)
         return BinarySearch2(a, value, mid+1, high);
 	}
 }
-{% endlight %}
+{% endhighlight %}
 ## 3.插值查找 ##
 在介绍插值查找之前，首先考虑一个新问题，为什么上述算法一定要是折半，而不是折四分之一或者折更多呢？  
 
@@ -125,4 +125,4 @@ public int InsertionSearch(int a[], int value, int low, int high) {
         return InsertionSearch(a, value, mid+1, high);
 	}
 }
-{% endlight %}
+{% endhighlight %}
