@@ -10,7 +10,7 @@ comments: true
 ## 1.1 Activity ##
 ### 1.1.1 Activity的生命周期 ###
 <figure>
-	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/android_activity/actiVity_lifecycle.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/android_activity/activity_lifecycle.png"></a>
+	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/android_activity/activity_lifecycle.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/android_activity/activity_lifecycle.png"></a>
 	<figcaption>Activity的生命周期</figcaption>
 </figure>
 **1.onCreate()**
