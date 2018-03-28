@@ -7,8 +7,8 @@ Activity通常就是一个屏幕，可以显示一些控件也可以监听并处
 tags: [android, activity, java]
 comments: true
 ---
-## 1.1 Activity ##
-### 1.1.1 Activity的生命周期 ###
+## 1 Activity ##
+### 1.1 Activity的生命周期 ###
 <figure>
 	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/android_activity/activity_lifecycle.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/android_activity/activity_lifecycle.png"></a>
 	<figcaption>Activity的生命周期</figcaption>
@@ -41,11 +41,11 @@ onCreate()方法会在Activity第一次被创建时调用，通常会在这个�
 
 这个函数在Activity由停止状态重新变为运行状态之前调用，下一个调用onStart()。
 
-###1.1.2 Activity的构成 ###
+###1.2 Activity的构成 ###
 
 PhoneWindow→DecorView→DefultLayout→ViewGroup:mContentParent→用户自己的xml布局
 
-### 1.1.3 Activity的4种启动模式 ###
+### 1.3 Activity的4种启动模式 ###
 **1.standard**
 
 在这种模式下启动的Activity可以被多次实例化，每启动一个Activity都会在栈顶创建一个新的实例。实际开发中，闹钟程序通常使采用这种模式。如果Activity是一个非常耗资源的类，那么将会使应用消耗更多的系统资源。
