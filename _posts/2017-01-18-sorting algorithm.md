@@ -261,7 +261,7 @@ public static void BubbleSort1(int [] arr){
  0   1   2    3    4    5    6    7    8    9  
 #### 3.平均时间复杂度：O(n㏒n) ####
 #### 4.Java代码实现 ####
-{% highlight %}
+{% highlight java %}
 public static void quickSort(int a[],int l,int r){
      if(l>=r)
        return;
