@@ -250,5 +250,181 @@ public static void BubbleSort1(int [] arr){
 数组：72 - 6 - 57 - 88 - 60 - 42 - 83 - 73 - 48 - 85  
  0   1   2    3    4    5    6    7    8    9  
 2.此时 i = 3; j = 7; key=72  
-## 七、归并排序 ##
-## 八、基数排序 ##
+再重复上面的步骤，先从后向前找，再从前向后找。  
+从j开始向前找，当j=5，符合条件，将a[5]挖出填到上一个坑中，**a[3] = a[5]; i++**;  
+从i开始向后找，当i=5时，由于i==j退出。  
+此时，i = j = 5，而a[5]刚好又是上次挖的坑，因此将key填入a[5]。  
+数组：48 - 6 - 57 - 88 - 60 - 42 - 83 - 73 - 88 - 85  
+ 0   1   2    3    4    5    6    7    8    9  
+3.可以看出a[5]前面的数字都小于它，a[5]后面的数字都大于它。因此再对a[0…4]和a[6…9]这二个子区间重复上述步骤就可以了。  
+数组：48 - 6 - 57 - 42 - 60 - 72 - 83 - 73 - 88 - 85  
+ 0   1   2    3    4    5    6    7    8    9  
+#### 3.平均时间复杂度：O(n㏒n) ####
+#### 4.Java代码实现 ####
+{% highlight %}
+public static void quickSort(int a[],int l,int r){
+     if(l>=r)
+       return;
+
+     int i = l; int j = r; int key = a[l];//选择第一个数为key
+
+     while(i<j){
+
+         while(i<j && a[j]>=key)//从右向左找第一个小于key的值
+             j--;
+         if(i<j){
+             a[i] = a[j];
+             i++;
+         }
+
+         while(i<j && a[i]<key)//从左向右找第一个大于key的值
+             i++;
+
+         if(i<j){
+             a[j] = a[i];
+             j--;
+         }
+     }
+     //i == j
+     a[i] = key;
+     quickSort(a, l, i-1);//递归调用
+     quickSort(a, i+1, r);//递归调用
+}
+{% endhighlight %}
+key值的选取可以有多种形式，例如中间数或者随机数，分别会对算法的复杂度产生不同的影响。
+## 七、归并排序(Merge Sort) ##
+#### 1.基本思想 ####
+归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法的一个非常典型的应用。  
+首先考虑下如何将2个有序数列合并。这个非常简单，只要从比较2个数列的第一个数，谁小就先取谁，取了后就在对应数列中删除这个数。然后再进行比较，如果有数列为空，那直接将另一个数列的数据依次取出即可。
+{% highlight %}
+//将有序数组a[]和b[]合并到c[]中
+void MemeryArray(int a[], int n, int b[], int m, int c[])
+{
+ int i, j, k;
+
+ i = j = k = 0;
+ while (i < n && j < m)
+ {
+     if (a[i] < b[j])
+         c[k++] = a[i++];
+     else
+         c[k++] = b[j++]; 
+ }
+
+ while (i < n)
+     c[k++] = a[i++];
+
+ while (j < m)
+     c[k++] = b[j++];
+}
+{% endhighlight %}
+解决了上面的合并有序数列问题，再来看归并排序，其的基本思路就是将数组分成2组A，B，如果这2组组内的数据都是有序的，那么就可以很方便的将这2组数据进行排序。如何让这2组组内数据有序了？  
+可以将A，B组各自再分成2组。依次类推，当分出来的小组只有1个数据时，可以认为这个小组组内已经达到了有序，然后再合并相邻的2个小组就可以了。这样通过**先递归的分解数列，再合并数列**就完成了归并排序。
+#### 2.过程 ####
+<figure>
+	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/merge_sort_1.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/merge_sort_1.png"></a>
+	<figcaption>归并排序</figcaption>
+</figure>
+#### 3.平均时间复杂度 O(n㏒n) ####
+归并排序的效率是比较高的，设数列长为n，将数列分开成小数列一共要㏒n步，每步都是一个合并有序数列的过程，时间复杂度可以记为O(n)，故一共为O(n㏒n)。
+#### 4.Java代码实现 ####
+{% highlight java %}
+public static void merge_sort(int a[],int first,int last,int temp[]){
+
+  if(first < last){
+      int middle = (first + last)/2;
+      merge_sort(a,first,middle,temp);//左半部分排好序
+      merge_sort(a,middle+1,last,temp);//右半部分排好序
+      mergeArray(a,first,middle,last,temp); //合并左右部分
+  }
+}
+//合并 ：将两个序列a[first-middle],a[middle+1-end]合并
+public static void mergeArray(int a[],int first,int middle,int end,int temp[]){     
+  int i = first;
+  int m = middle;
+  int j = middle+1;
+  int n = end;
+  int k = 0; 
+  while(i<=m && j<=n){
+      if(a[i] <= a[j]){
+          temp[k] = a[i];
+          k++;
+          i++;
+      }else{
+          temp[k] = a[j];
+          k++;
+          j++;
+      }
+  }     
+  while(i<=m){
+      temp[k] = a[i];
+      k++;
+      i++;
+  }     
+  while(j<=n){
+      temp[k] = a[j];
+      k++;
+      j++; 
+  }
+
+  for(int ii=0;ii<k;ii++){
+      a[first + ii] = temp[ii];
+  }
+}
+{% endhighlight %}
+## 八、基数排序(Radix Sort或Bin Sort) ##
+#### 1.基本思想 ####
+BinSort想法非常简单，首先创建数组A[MaxValue]；然后将每个数放到相应的位置上（例如17放在下标17的数组位置）；最后遍历数组，即为排序后的结果。
+#### 2.图示 ####
+<figure>
+	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/radix_sort_1.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/radix_sort_1.png"></a>
+	<figcaption>基数排序</figcaption>
+</figure>
+①**问题：**当序列中存在较大值时，BinSort 的排序方法会浪费大量的空间开销。  
+②**思想：**基数排序是在BinSort的基础上，通过基数的限制来减少空间的开销。
+#### 3.过程 ####
+<figure>
+	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/radix_sort_2.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/radix_sort_2.png"></a>
+	<figcaption>过程1</figcaption>
+</figure>
+<figure>
+	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/radix_sort_3.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/radix_sort_3.png"></a>
+	<figcaption>过程2</figcaption>
+</figure>
+（1）首先确定基数为10，数组的长度也就是10.每个数34都会在这10个数中寻找自己的位置。  
+（2）不同于BinSort会直接将数34放在数组的下标34处，基数排序是将34分开为3和4，第一轮排序根据最末位放在数组的下标4处，第二轮排序根据倒数第二位放在数组的下标3处，然后遍历数组即可。
+#### 4.Java代码实现 ####
+{% highlight %}
+public static void RadixSort(int A[],int temp[],int n,int k,int r,int cnt[]){
+
+   //A:原数组
+   //temp:临时数组
+   //n:序列的数字个数
+   //k:最大的位数2
+   //r:基数10
+   //cnt:存储bin[i]的个数
+
+   for(int i=0 , rtok=1; i<k ; i++ ,rtok = rtok*r){
+
+       //初始化
+       for(int j=0;j<r;j++){
+           cnt[j] = 0;
+       }
+       //计算每个箱子的数字个数
+       for(int j=0;j<n;j++){
+           cnt[(A[j]/rtok)%r]++;
+       }
+       //cnt[j]的个数修改为前j个箱子一共有几个数字
+       for(int j=1;j<r;j++){
+           cnt[j] = cnt[j-1] + cnt[j];
+       }
+       for(int j = n-1;j>=0;j--){      //重点理解
+           cnt[(A[j]/rtok)%r]--;
+           temp[cnt[(A[j]/rtok)%r]] = A[j];
+       }
+       for(int j=0;j<n;j++){
+           A[j] = temp[j];
+       }
+   }
+}
+{% endhighlight %}
