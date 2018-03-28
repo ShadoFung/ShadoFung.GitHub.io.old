@@ -23,7 +23,7 @@ Android广播机制包含3个基本要素，分别是用于发送广播的Broadc
 public class HelloBroadcastReceiver extends BroadcaseReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Toast.makeText（context, "hello", Toast.LENGTH_LONG).show();
+		Toast.makeText(context, "hello", Toast.LENGTH_LONG).show();
 	}
 }
 {% endhighlight %}
