@@ -47,10 +47,10 @@ public static void  insert_sort(int array[],int lenth){
 #### 1.前言 ####
 数据序列1： 13-17-20-42-28 利用插入排序，13-17-20-28-42. Number of swap:1;  
 数据序列2： 13-17-20-42-14 利用插入排序，13-14-17-20-42. Number of swap:3;  
-如果数据序列基本有序，使用插入排序会更加高效。  
+如果数据序列基本有序，使用插入排序会更加高效。
 #### 2.基本思想 ####
 在要排序的一组数中，根据某一增量分为若干子序列，并对子序列分别进行插入排序。  
-然后逐渐将增量减小,并重复上述过程。直至增量为1,此时数据序列基本有序,最后进行插入排序。  
+然后逐渐将增量减小,并重复上述过程。直至增量为1,此时数据序列基本有序,最后进行插入排序。 
 #### 3.过程 ####
 <figure>
 	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/shell_sort_1.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/shell_sort_1.png"></a>
@@ -92,10 +92,10 @@ public static void shell_sort(int array[],int lenth){
 
 ## 三、选择排序 ##
 #### 1.基本思想 ####
-- 在长度为N的无序数组中，第一次遍历n-1个数，找到最小的数值与第一个元素交换；
-- 第二次遍历n-2个数，找到最小的数值与第二个元素交换；
-- 。。。
-- 第n-1次遍历，找到最小的数值与第n-1个元素交换，排序完成。
+在长度为N的无序数组中，第一次遍历n-1个数，找到最小的数值与第一个元素交换；  
+第二次遍历n-2个数，找到最小的数值与第二个元素交换；  
+。。。  
+第n-1次遍历，找到最小的数值与第n-1个元素交换，排序完成。
 #### 2.过程 ####
 <figure>
 	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/selection_sort_1.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/selection_sort_1.png"></a>
@@ -210,11 +210,11 @@ public static void BubbleSort(int [] arr){
 }
 {% endhighlight %}
 #### 5.优化 ####
-1. **针对问题：**
-- 数据的顺序排好之后，冒泡算法仍然会继续进行下一轮的比较，直到arr.length-1次，后面的比较没有意义的。
-2. **方案：**
-- 设置标志位flag，如果发生了交换flag设置为true；如果没有交换就设置为false。
-- 这样当一轮比较结束后如果flag仍为false，即：这一轮没有发生交换，说明数据的顺序已经排好，没有必要继续进行下去。
+1. **针对问题：**  
+数据的顺序排好之后，冒泡算法仍然会继续进行下一轮的比较，直到arr.length-1次，后面的比较没有意义的。
+2. **方案：**  
+设置标志位flag，如果发生了交换flag设置为true；如果没有交换就设置为false。  
+这样当一轮比较结束后如果flag仍为false，即：这一轮没有发生交换，说明数据的顺序已经排好，没有必要继续进行下去。  
 {% highlight java %}
 public static void BubbleSort1(int [] arr){
 
@@ -238,10 +238,10 @@ public static void BubbleSort1(int [] arr){
 {% endhighlight %}
 ## 六、快速排序(Quicksort) ##
 #### 1.基本思想 （分治） ####
-1. 先从数列中取出一个数作为key值；
-2. 将比这个数小的数全部放在它的左边，大于或等于它的数全部放在它的右边；
-3. 对左右两个小数列重复第二步，直至各区间只有1个数。
+1.先从数列中取出一个数作为key值；  
+2.将比这个数小的数全部放在它的左边，大于或等于它的数全部放在它的右边；  
+3.对左右两个小数列重复第二步，直至各区间只有1个数。  
 #### 2.辅助理解 挖坑填数 ####
-1. 初始时 i = 0; j = 9; key=72
+1.初始时 i = 0; j = 9; key=72  
 ## 七、归并排序 ##
 ## 八、基数排序 ##
