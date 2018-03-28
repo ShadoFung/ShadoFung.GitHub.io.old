@@ -88,7 +88,7 @@ public static void shell_sort(int array[],int lenth){
        }
    }
 }
-{% enhighlight %}
+{% endhighlight %}
 
 ## 三、选择排序 ##
 #### 1.基本思想 ####
