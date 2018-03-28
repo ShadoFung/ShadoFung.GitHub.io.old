@@ -394,7 +394,7 @@ BinSort想法非常简单，首先创建数组A[MaxValue]；然后将每个数�
 （1）首先确定基数为10，数组的长度也就是10.每个数34都会在这10个数中寻找自己的位置。  
 （2）不同于BinSort会直接将数34放在数组的下标34处，基数排序是将34分开为3和4，第一轮排序根据最末位放在数组的下标4处，第二轮排序根据倒数第二位放在数组的下标3处，然后遍历数组即可。
 #### 4.Java代码实现 ####
-{% highlight %}
+{% highlight java %}
 public static void RadixSort(int A[],int temp[],int n,int k,int r,int cnt[]){
 
    //A:原数组
