@@ -2,7 +2,7 @@
 layout: post
 title: "七大查找算法"
 date: 2017-01-22
-excerpt: "七大常用查找算法"
+excerpt: "查找是在大量的信息中寻找一个特定的信息元素，在计算机应用中，查找是常用的基本运算，例如编译程序中符号表的查找。"
 tags: [算法, java]
 comments: true
 ---
