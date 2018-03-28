@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "八大排序"
+title: "八大排序算法"
 date: 2017-01-18
 excerpt: "八大常用排序算法"
 tags: [算法, java]
@@ -10,7 +10,7 @@ comments: true
 	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/sorting.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/sorting.png"></a>
 </figure>
 
-## 一、插入排序 ##
+## 一、插入排序(Insertion Sort) ##
 #### 1.基本思想 ####
 在要排序的一组数中，假定前n-1个数已经排好序，现在将第n个数插到前面的有序数列中，使得这n个数也是排好顺序的。如此反复循环，直到全部排好顺序。
 #### 2.过程 ####
@@ -43,7 +43,7 @@ public static void  insert_sort(int array[],int lenth){
 }
 {% endhighlight %}
 
-## 二、希尔排序 ##
+## 二、希尔排序(Shell Sort) ##
 #### 1.前言 ####
 数据序列1： 13-17-20-42-28 利用插入排序，13-17-20-28-42. Number of swap:1;  
 数据序列2： 13-17-20-42-14 利用插入排序，13-14-17-20-42. Number of swap:3;  
@@ -90,7 +90,7 @@ public static void shell_sort(int array[],int lenth){
 }
 {% endhighlight %}
 
-## 三、选择排序 ##
+## 三、选择排序(Selction Sort) ##
 #### 1.基本思想 ####
 在长度为N的无序数组中，第一次遍历n-1个数，找到最小的数值与第一个元素交换；  
 第二次遍历n-2个数，找到最小的数值与第二个元素交换；  
@@ -123,7 +123,7 @@ public static void select_sort(int array[],int lenth){
 }
 {% endhighlight %}
 
-## 四、堆排序(HeapSort) ##
+## 四、堆排序(Heap Sort) ##
 #### 1.基本思想 ####
 <figure>
 	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/heap_sort_1.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/heap_sort_1.png"></a>
@@ -180,7 +180,7 @@ public static void MinHeap_Sort(int a[],int n){
   }     
 }
 {% endhighlight %}
-## 五、冒泡排序(BubbleSort) ##
+## 五、冒泡排序(Bubble Sort) ##
 #### 1.基本思想 ####
 两个数比较大小，较大的数下沉，较小的数冒起来。
 #### 2.过程 ####
@@ -236,7 +236,7 @@ public static void BubbleSort1(int [] arr){
    }
 }
 {% endhighlight %}
-## 六、快速排序(Quicksort) ##
+## 六、快速排序(Quick Sort) ##
 #### 1.基本思想 （分治） ####
 1.先从数列中取出一个数作为key值；  
 2.将比这个数小的数全部放在它的左边，大于或等于它的数全部放在它的右边；  
