@@ -3,7 +3,7 @@ layout: post
 title: "八大排序"
 date: 2017-01-18
 excerpt: "八大常用排序算法"
-tags: [算法]
+tags: [算法, java]
 comments: true
 ---
 <figure>
@@ -45,12 +45,12 @@ public static void  insert_sort(int array[],int lenth){
 
 ## 二、希尔排序 ##
 #### 1.前言 ####
-- 数据序列1： 13-17-20-42-28 利用插入排序，13-17-20-28-42. Number of swap:1;
-- 数据序列2： 13-17-20-42-14 利用插入排序，13-14-17-20-42. Number of swap:3;
-- 如果数据序列基本有序，使用插入排序会更加高效。
+数据序列1： 13-17-20-42-28 利用插入排序，13-17-20-28-42. Number of swap:1;  
+数据序列2： 13-17-20-42-14 利用插入排序，13-14-17-20-42. Number of swap:3;  
+如果数据序列基本有序，使用插入排序会更加高效。  
 #### 2.基本思想 ####
-- 在要排序的一组数中，根据某一增量分为若干子序列，并对子序列分别进行插入排序。
-- 然后逐渐将增量减小,并重复上述过程。直至增量为1,此时数据序列基本有序,最后进行插入排序。
+在要排序的一组数中，根据某一增量分为若干子序列，并对子序列分别进行插入排序。  
+然后逐渐将增量减小,并重复上述过程。直至增量为1,此时数据序列基本有序,最后进行插入排序。  
 #### 3.过程 ####
 <figure>
 	<a href="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/shell_sort_1.png"><img src="https://raw.githubusercontent.com/ShadoFung/ShadoFung.GitHub.io/master/_posts/images/sorting_algorithm/shell_sort_1.png"></a>
@@ -236,6 +236,12 @@ public static void BubbleSort1(int [] arr){
    }
 }
 {% endhighlight %}
-## 六、快速排序 ##
+## 六、快速排序(Quicksort) ##
+#### 1.基本思想 （分治） ####
+1. 先从数列中取出一个数作为key值；
+2. 将比这个数小的数全部放在它的左边，大于或等于它的数全部放在它的右边；
+3. 对左右两个小数列重复第二步，直至各区间只有1个数。
+#### 2.辅助理解 挖坑填数 ####
+1. 初始时 i = 0; j = 9; key=72
 ## 七、归并排序 ##
 ## 八、基数排序 ##
