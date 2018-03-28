@@ -4,7 +4,7 @@ title: "Android Activity"
 date: 2017-02-02
 excerpt: "Activity是Android组件中最基本也是最为常见用的四大组件（Activity，Service服务,Content Provider内容提供者，BroadcastReceiver广播接收器）之一。
 Activity通常就是一个屏幕，可以显示一些控件也可以监听并处理用户的事件做出响应。"
-tags: [android, java]
+tags: [android, activity, java]
 comments: true
 ---
 ## 1.1 Activity ##
@@ -42,7 +42,9 @@ onCreate()方法会在Activity第一次被创建时调用，通常会在这个�
 这个函数在Activity由停止状态重新变为运行状态之前调用，下一个调用onStart()。
 
 ###1.1.2 Activity的构成 ###
+
 PhoneWindow→DecorView→DefultLayout→ViewGroup:mContentParent→用户自己的xml布局
+
 ### 1.1.3 Activity的4种启动模式 ###
 **1.standard**
 
