@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "插入排序"
+title: "二、希尔排序"
 date: 2016-05-04
 excerpt: "希尔排序(Shell's Sort)是插入排序的一种又称“缩小增量排序”（Diminishing Increment Sort），是直接插入排序算法的一种更高效的改进版本。希尔排序是非稳定排序算法。该方法因D.L.Shell于1959年提出而得名。"
 tags: [算法, java]
 comments: true
 ---
-## 二、希尔排序(Shell Sort) ##
+## 希尔排序(Shell Sort) ##
 #### 1.前言 ####
 数据序列1： 13-17-20-42-28 利用插入排序，13-17-20-28-42. Number of swap:1;  
 数据序列2： 13-17-20-42-14 利用插入排序，13-14-17-20-42. Number of swap:3;  
