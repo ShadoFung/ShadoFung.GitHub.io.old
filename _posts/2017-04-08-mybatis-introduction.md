@@ -7,8 +7,8 @@ tags: [mybatis, java]
 comments: true
 ---
 ## MyBatis
-**使用JDBC编程问题总结**
-**1.JDBC编程步骤**
+**使用JDBC编程问题总结**  
+**1.JDBC编程步骤**  
 1. 加载数据库驱动
 2. 创建并获取数据库链接
 3. 创建jdbc statement对象
@@ -21,7 +21,8 @@ comments: true
 1. 数据库连接创建、释放频繁造成系统资源浪费，从而影响系统性能。如果使用数据库连接池可解决此问题。
 2. Sql语句在代码中硬编码，造成代码不易维护，实际应用中sql变化的可能较大，sql变动需要改变java代码。
 3. 使用preparedStatement向占有位符号传参数存在硬编码，因为sql语句的where条件不一定，可能多也可能少，修改sql还要修改代码，系统不易维护。
-4. 对结果集解析存在硬编码（查询列名），sql变化导致解析代码变化，系统不易维护，如果能将数据库记录封装成pojo对象解析比较方便。
+4. 对结果集解析存在硬编码（查询列名），sql变化导致解析代码变化，系统不易维护，如果能将数据库记录封装成pojo对象解析比较方便。  
+
 ### 1. MyBatis介绍
 MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。2013年11月迁移到Github。  
 MyBatis是一个优秀的持久层框架，它对jdbc的操作数据库的过程进行封装，使开发者只需要关注 SQL 本身，而不需要花费精力去处理例如注册驱动、创建connection、创建statement、手动设置参数、结果集检索等jdbc繁杂的过程代码。  
@@ -73,3 +74,5 @@ XML 配置文件（configuration XML）中包含了对 MyBatis 系统的核心�
   </mappers>
 </configuration>
 {% endhighlight %}
+
+当然，还有很多可以在XML 文件中进行配置，上面的示例指出的则是最关键的部分。要注意 XML 头部的声明，用来验证 XML 文档正确性。environment 元素体中包含了事务管理和连接池的配置。mappers 元素则是包含一组 mapper 映射器（这些 mapper 的 XML 文件包含了 SQL 代码和映射定义信息）。
