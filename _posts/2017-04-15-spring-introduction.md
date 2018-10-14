@@ -359,6 +359,7 @@ public class Audience{
 |----
 
 来个栗子
+
 {% highlight java %}
 public class Audience{
   public void silenceCellPhones(){
