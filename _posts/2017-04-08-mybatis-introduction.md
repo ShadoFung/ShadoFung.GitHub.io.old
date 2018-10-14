@@ -7,8 +7,8 @@ tags: [mybatis, java]
 comments: true
 ---
 ## MyBatis
-#### 使用JDBC编程问题总结
-##### 1. JDBC编程步骤
+**使用JDBC编程问题总结**
+**1.JDBC编程步骤**
 1. 加载数据库驱动
 2. 创建并获取数据库链接
 3. 创建jdbc statement对象
@@ -17,7 +17,7 @@ comments: true
 6. 通过statement执行sql并获取结果
 7. 对sql执行结果进行解析处理
 8. 释放资源(resultSet、preparedstatement、connection)
-##### 2. JDBC问题总结
+**2.JDBC问题总结**
 1. 数据库连接创建、释放频繁造成系统资源浪费，从而影响系统性能。如果使用数据库连接池可解决此问题。
 2. Sql语句在代码中硬编码，造成代码不易维护，实际应用中sql变化的可能较大，sql变动需要改变java代码。
 3. 使用preparedStatement向占有位符号传参数存在硬编码，因为sql语句的where条件不一定，可能多也可能少，修改sql还要修改代码，系统不易维护。
@@ -51,7 +51,7 @@ InputStream inputStream = Resources.getResourceAsStream(resource);
 SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 {% endhighlight %}
 XML 配置文件（configuration XML）中包含了对 MyBatis 系统的核心设置，包含获取数据库连接实例的数据源（DataSource）和决定事务作用域和控制方式的事务管理器（TransactionManager）。XML 配置文件的详细内容后面再探讨，这里先给出一个简单的示例：  
-{% highlight xml %}
+{% highlight html %}
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
