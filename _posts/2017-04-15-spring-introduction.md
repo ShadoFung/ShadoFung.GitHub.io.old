@@ -402,7 +402,7 @@ AspectJ关于Spring AOP的AspectJ切点，最重要的一点就是Spring仅支�
 
 Spring借助AspectJ的切点表达式语言来定义Spring切面
 
-AspectJ指示器  | 描　　述
+AspectJ指示器  | 描述
 ---|---
 arg()  | 限制连接点匹配参数为指定类型的执行方法
 @args()  | 限制连接点匹配参数由指定注解标注的执行方法
