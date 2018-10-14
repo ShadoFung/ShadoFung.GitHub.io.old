@@ -347,3 +347,8 @@ bind 元素可以从 OGNL 表达式中创建一个变量并将其绑定到上下
 parameterType：指定输入参数类型，mybatis通过ognl从输入对象中获取参数值拼接在sql中。
 
 resultType：指定输出结果类型，mybatis将sql查询结果的一行记录数据映射为resultType指定类型的对象。如果有多条数据，则分别进行映射，并把对象放到容器List中
+
+#### (3) selectOne和selectList
+selectOne查询一条记录，如果使用selectOne查询多条记录则抛出异常。
+
+selectList可以查询一条或多条记录。
