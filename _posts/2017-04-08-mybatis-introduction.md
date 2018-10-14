@@ -17,7 +17,8 @@ comments: true
 6. 通过statement执行sql并获取结果
 7. 对sql执行结果进行解析处理
 8. 释放资源(resultSet、preparedstatement、connection)
-**2.JDBC问题总结**
+
+**2.JDBC问题总结**  
 1. 数据库连接创建、释放频繁造成系统资源浪费，从而影响系统性能。如果使用数据库连接池可解决此问题。
 2. Sql语句在代码中硬编码，造成代码不易维护，实际应用中sql变化的可能较大，sql变动需要改变java代码。
 3. 使用preparedStatement向占有位符号传参数存在硬编码，因为sql语句的where条件不一定，可能多也可能少，修改sql还要修改代码，系统不易维护。
