@@ -359,7 +359,7 @@ public class Audience{
 |----
 
 来个栗子
-{ highlight java }
+{% highlight java %}
 public class Audience{
   public void silenceCellPhones(){
     System.out.println("Silencing cell phones");
@@ -374,11 +374,11 @@ public class Audience{
     System.out.println("Demanding a refund");
   }
 }
-{ endhighlight }
+{% endhighlight %}
 
 通过XML将无注解的Audience声明为切面
 
-{ highlight html }
+{% highlight html %}
 <aop:config>
   <aop:aspect ref="audience">
     <aop:before
@@ -395,22 +395,30 @@ public class Audience{
         method="demanRefund"/>
   </aop:aspect>
 </aop:config>
-{ endhighlight }
+{% endhighlight %}
 
 AspectJ关于Spring AOP的AspectJ切点，最重要的一点就是Spring仅支持AspectJ切点指示器（pointcut designator）的一个子集。让我们回顾下，Spring是基于代理的，而某些切点表达式是与基于代理的AOP无关的。下表列出了Spring AOP所支持的AspectJ切点指示器。
 
 Spring借助AspectJ的切点表达式语言来定义Spring切面
 
 | AspectJ指示器  | 描　　述
-|------------- | -------------
+|----
 | arg()  | 限制连接点匹配参数为指定类型的执行方法
+|----
 | @args()  | 限制连接点匹配参数由指定注解标注的执行方法
+|----
 | execution()  | 用于匹配是连接点的执行方法
+|----
 | this()  | 限制连接点匹配AOP代理的bean引用为指定类型的类
+|----
 | target  | 限制连接点匹配目标对象为指定类型的类
+|----
 | @target()  | 限制连接点匹配特定的执行对象，这些对象对应的类要具有指定类型的注解
+|----
 | within()  | 限制连接点匹配指定的类型
+|----
 | @within()  | 限制连接点匹配指定注解所标注的类型（当使用Spring AOP时，方法定义在由指定的注解所标注的类里）
+|----
 | @annotation  | 限定匹配带有指定注解的连接点
 
 ### Spring高级特性
@@ -427,26 +435,64 @@ Spring借助AspectJ的切点表达式语言来定义Spring切面
 | ApplicationEventPublisherAware  | 应用时间发布器，可以发布时间，
 | ResourceLoaderAware  | 获得资源加载器，可以获得外部资源文件
 
-@TaskExecutor
+#### @TaskExecutor
 
 这样可以实现多线程和并发编程。通过@EnableAsync开启对异步任务的支持，并通过实际执行的Bean的方法始中使用@Async注解来声明其是一个异步任务
 
-@Scheduled 计划任务
+#### @Scheduled 计划任务
 
 首先通过在配置类注解@EnableScheduling来开启对计划任务的支持，然后在要执行计划任务的方法上注解@Scheduled，声明这是一个计划任务
 
-@Conditional
+#### @Conditional
 
 根据满足某一个特定条件创建一个特定的Bean。
 
-组合注解与元注解
+#### 组合注解与元注解
 
 元注解就是可以注解到别的注解上的注解，被注解的注解称之为组合注解，组合注解具备注解其上的元注解的功能。
 
-@Enable*注解的工作原理
+**@Enable*注解的工作原理**
 
 通过观察这些@Enable*注解的源码，我们发现所有的注解都有一个@Import注解，@Import是用来导入配置类的，这也就意外着这些自动开启的实现其实是导入了一些自动配置的Bean。这些导入配置的方式主要范围以下三种类型：
 
-第一类：直接导入配置类
-第二类：依据条件选择配置类
-第三类：动态注册Bean
+- 第一类：直接导入配置类
+- 第二类：依据条件选择配置类
+- 第三类：动态注册Bean
+
+## What
+简单的分析一下Spring。
+
+Spring 框架中的核心组件只有三个：Core、Context 和 Bean。它们构建起了整个 Spring 的骨骼架构。没有它们就不可能有 AOP、Web 等上层的特性功能。下面也将主要从这三个组件入手分析 Spring。
+
+### Spring的设计理念
+用过Spring的同学都知道Bean在Spring的作用是非常重要的。通过一系列简单的配置来满足类与类之间的依赖关系——这叫做依赖注入。而依赖注入的关系是在一个叫IOC的容器中进行管理。
+
+### 核心组件
+我们说到Spring 框架中的核心组件只有三个：**Core**、**Context** 和 **Bean**。那么Core和Context是如何协作的呢？
+
+我们知道 Bean 包装的是 Object，而 Object 必然有数据，如何给这些数据提供生存环境就是 Context 要解决的问题，对 Context 来说他就是要发现每个 Bean 之间的关系，为它们建立这种关系并且要维护好这种关系。所以 Context 就是一个 Bean 关系的集合，这个关系集合又叫 Ioc 容器 ，一旦建立起这个 Ioc 容器后 Spring 就可以为你工作了。那 Core 组件又有什么用武之地呢？其实 Core 就是发现、建立和维护每个 Bean 之间的关系所需要的一些列的工具。
+
+#### Bean
+前面已经说明了 Bean 组件对 Spring 的重要性，下面看看 Bean 这个组件式怎么设计的。Bean 组件在 Spring 的 org.springframework.beans 包下。这个包下的所有类主要解决了三件事：Bean 的定义、Bean 的创建以及对 Bean 的解析。对 Spring 的使用者来说唯一需要关心的就是 Bean 的创建，其他两个由 Spring 在内部帮你完成了，对你来说是透明的。
+
+#### Context
+ApplicationContext 是 Context 的顶级父类，他除了能标识一个应用环境的基本信息外，他还继承了五个接口，这五个接口主要是扩展了 Context 的功能。
+
+ApplicationContext 的子类主要包含两个方面：
+
+- ConfigurableApplicationContext 表示该 Context 是可修改的，也就是在构建 Context 中用户可以动态添加或修改已有的配置信息，它下面又有多个子类，其中最经常使用的是可更新的 Context，即 AbstractRefreshableApplicationContext类。
+- WebApplicationContext 顾名思义，就是为 web 准备的 Context 他可以直接访问到 ServletContext，通常情况下，这个接口使用的少。
+
+再往下分就是按照构建 Context 的文件类型，接着就是访问 Context 的方式。这样一级一级构成了完整的 Context 等级层次。
+
+总体来说 ApplicationContext 必须要完成以下几件事：
+
+- 标识一个应用环境
+- 利用 BeanFactory 创建 Bean 对象
+- 保存对象关系表
+- 能够捕获各种事件
+
+Context 作为 Spring 的 IOC 容器，基本上整合了 Spring 的大部分功能，或者说是大部分功能的基础。
+
+#### Core
+Core 组件作为 Spring 的核心组件，他其中包含了很多的关键类，其中一个重要组成部分就是定义了资源的访问方式。这种把所有资源都抽象成一个接口的方式很值得在以后的设计中拿来学习。
