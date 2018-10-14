@@ -57,17 +57,17 @@ Spring定义了多种Bean作用域，可以基于这些作用域创建bean，包
 - 请求（Rquest）：在Web应用中，为每个请求创建一个bean实例。
 
 在代码里看起来是这样的：
-{ highlight java }
+{% highlight java %}
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MyIsBean{...}
 { endhighlight }
 XML版本：  
-{ highlight html }
+{% highlight html %}
 <bean id="BEANID"
   class = "net.itxm.beans"
   scope="prototype"
 >
-{ endhighlight }
+{% endhighlight %}
 在默认情况下，Spring应用上下文中所有bean都是作为以单例（singleton）的形式创建的。也就是说，不管给定的一个bean被注入到其他bean多少次，每次所注入的都是同一个实例。
 
 在大多数情况下，单例bean是很理想的方案。初始化和垃圾回收对象实例所带来的成本只留给一些小规模任务，在这些任务中，让对象保持无状态并且在应用中反复重用这些对象可能并不合理。
