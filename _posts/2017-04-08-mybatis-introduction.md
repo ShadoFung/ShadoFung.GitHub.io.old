@@ -106,11 +106,13 @@ SQL 映射文件有很少的几个顶级元素（按照它们应该被定义的�
 
 `#{id}`
 这就告诉 MyBatis 创建一个预处理语句参数，通过 JDBC，这样的一个参数在 SQL 中会由一个“?”来标识，并被传递到一个新的预处理语句中，就像这样：
+{% highlight java %}
+// Similar JDBC code, NOT MyBatis…
+String selectPerson = "SELECT * FROM PERSON WHERE ID=?";
+PreparedStatement ps = conn.prepareStatement(selectPerson);
+ps.setInt(1,id);
+{% endhighlight %}
 
-	// Similar JDBC code, NOT MyBatis…
-	String selectPerson = "SELECT * FROM PERSON WHERE ID=?";
-	PreparedStatement ps = conn.prepareStatement(selectPerson);
-	ps.setInt(1,id);
 
 下面就是 insert，update 和 delete 语句的示例：
 
