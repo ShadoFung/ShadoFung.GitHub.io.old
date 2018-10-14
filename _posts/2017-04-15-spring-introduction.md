@@ -60,7 +60,7 @@ Spring定义了多种Bean作用域，可以基于这些作用域创建bean，包
 {% highlight java %}
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MyIsBean{...}
-{ endhighlight }
+{% endhighlight %}
 XML版本：  
 {% highlight html %}
 <bean id="BEANID"
