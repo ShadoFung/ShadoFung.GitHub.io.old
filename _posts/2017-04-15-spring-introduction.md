@@ -197,13 +197,6 @@ Spring切面可以应用5种类型的通知：
 
 对应注解：
 
-注　　解	通　　知  
-- @After	通知方法会在目标方法返回或抛出异常后调用  
-- @AfterReturning	通知方法会在目标方法返回后调用  
-- @AfterThrowing	通知方法会在目标方法抛出异常后调用  
-- @Around	通知方法会将目标方法封装起来  
-- @Before	通知方法会在目标方法调用之前执行  
-
 | 注解   |   通知
 |----
 | @After   | 通知方法会在目标方法返回或抛出异常后调用   |
@@ -225,24 +218,125 @@ Spring切面可以应用5种类型的通知：
 
 如果说通知定义了切面的“什么”和“何时”的话，那么切点就定义了“何处” 。切点的定义会匹配通知所要织入的一个或多个连接点。我们通常使用明确的类和方法名称，或是利用正则表达式定义所匹配的类和方法名称来指定这些切点。有些AOP框架允许我们创建动态的切点，可以根据运行时的决策（比如方法的参数值）来决定是否应用通知。
 
-切面（Aspect）
+**切面（Aspect）**
 
 通知+切点=切面
 
-引入（Introduction）
+**引入（Introduction）**
 
 引入允许我们向现有的类添加新方法或属性
 
-织入（Weaving）
+**织入（Weaving）**
 
 织入是把切面应用到目标对象并创建新的代理对象的过程。切面在指定的连接点被织入到目标对象中。在目标对象的生命周期里有多个点可以进行织入：
 
-编译期：切面在目标类编译时被织入。这种方式需要特殊的编译器。AspectJ的织入编译器就是以这种方式织入切面的。
-类加载期：切面在目标类加载到JVM时被织入。这种方式需要特殊的类加载器（ClassLoader），它可以在目标类被引入应用之前增强该目标类的字节码。AspectJ 5的加载时织入（load-time weaving，LTW）就支持以这种方式织入切面。
-运行期：切面在应用运行的某个时刻被织入。一般情况下，在织入切面时，AOP容器会为目标对象动态地创建一个代理对象。Spring AOP就是以这种方式织入切面的。
-Spring对AOP的支持：
+- 编译期：切面在目标类编译时被织入。这种方式需要特殊的编译器。AspectJ的织入编译器就是以这种方式织入切面的。
+- 类加载期：切面在目标类加载到JVM时被织入。这种方式需要特殊的类加载器（ClassLoader），它可以在目标类被引入应用之前增强该目标类的字节码。AspectJ 5的加载时织入（load-time weaving，LTW）就支持以这种方式织入切面。
+- 运行期：切面在应用运行的某个时刻被织入。一般情况下，在织入切面时，AOP容器会为目标对象动态地创建一个代理对象。Spring AOP就是以这种方式织入切面的。
 
-基于代理的经典Spring AOP；
-纯POJO切面（4.x版本需要XML配置）；
-@AspectJ注解驱动的切面；
-注入式AspectJ切面（适用于Spring各版本）。
+#### Spring对AOP的支持：
+
+1. 基于代理的经典Spring AOP；
+2. 纯POJO切面（4.x版本需要XML配置）；
+3. @AspectJ注解驱动的切面；
+4. 注入式AspectJ切面（适用于Spring各版本）。
+
+**例子**
+
+{% highlight java %}
+public interface Performance(){
+  public void perform();
+}
+{% endhighlight %}
+
+现在来写一个切点表达式，这个表达式能够设置当perform()方法执行时触发通知的调用。
+
+{% highlight java %}
+execution(* concert.Performance.perform(..))
+//execution：在方法执行时触发
+//*：返回任意类型
+//concert.Performance：方法所属类
+//perform：方法名
+//(..)：使用任意参数
+{% endhighlight %}
+
+不仅如此，还可以写的更复杂一点
+
+{% highlight java %}
+execution(* concert.Performance.perform(..)&&within(concert.*))
+//增加了一个与操作，当concert包下的任意类方法被调用时也会触发
+{% endhighlight %}
+
+在切点中选择bean
+
+{% highlight java %}
+execution(*concert.Performance.perform()) and bean('woodstock')
+//限定bean id为woodstock
+{% endhighlight %}
+
+来个完整的切面
+
+{% highlight java %}
+@Aspect
+public class Audience{
+  @Before("execution(**concert.Performance.perform(..))")
+  public void silenceCellPhones(){
+    System.out.println("Silencing cell phones");
+  }
+  @Before("execution{** concert.Performance.perform{..}}")
+  public void taskSeats(){
+    System.out.println("Talking seats");
+  }
+  @AfterReturning("execution{** concert.Performance.perform{..}}")
+  public void applause(){
+    System.out.println("CLAP CLAP CLAP!!!");
+  }
+  @AfterThrowing("execution{** concert.Performance.perform{..}}")
+  public void demanRefund(){
+    System.out.println("Demanding a refund");
+  }
+}
+{% endhighlight %}
+
+可以简化一下
+
+{% highlight java %}
+@Aspect
+public class Audience{
+  //避免频繁使用切点表达式
+  @Pointcut("execution(** concert.Performance.perform(..))")
+  public void performance(){}
+ 
+  @Before("performance()")
+  public void silenceCellPhones(){
+    System.out.println("Silencing cell phones");
+  }
+  @Before("performance()")
+  public void taskSeats(){
+    System.out.println("Talking seats");
+  }
+  @AfterReturning("performance()")
+  public void applause(){
+    System.out.println("CLAP CLAP CLAP!!!");
+  }
+  @AfterThrowing("performance()")
+  public void demanRefund(){
+    System.out.println("Demanding a refund");
+  }
+}
+{% endhighlight %}
+
+**XML中声明切面**
+
+AOP配置元素	用途
+<aop:advisor>	定义AOP通知器
+<aop:after>	定义AOP后置通知（不管被通知的方法是否执行成功）
+<aop:after-returning>	定义AOP返回通知
+<aop:after-throwing>	定义AOP异常通知
+<aop:around>	定义AOP环绕通知
+<aop:aspect>	定义一个切面
+<aop:aspectj-autoproxy>	启用@AspectJ注解驱动的切面
+<aop:before>	定义一个AOP前置通知
+<aop:config>	顶层的AOP配置元素。大多数的<aop:*>元素必须包含在<aop:config>元素内
+<aop:declare-parents>	以透明的方式为被通知的对象引入额外的接口
+<aop:pointcut>	定义一个切点
