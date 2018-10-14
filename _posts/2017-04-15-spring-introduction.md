@@ -219,7 +219,7 @@ Spring切面可以应用5种类型的通知：
 
 连接点是在应用执行过程中能够插入切面的一个点。这个点可以是调用方法时、抛出异常时、甚至修改一个字段时。切面代码可以利用这些点插入到应用的正常流程之中，并添加新的行为。
 
-切点（Pointcut）
+**切点（Pointcut）**
 
 如果说通知定义了切面的“什么”和“何时”的话，那么切点就定义了“何处” 。切点的定义会匹配通知所要织入的一个或多个连接点。我们通常使用明确的类和方法名称，或是利用正则表达式定义所匹配的类和方法名称来指定这些切点。有些AOP框架允许我们创建动态的切点，可以根据运行时的决策（比如方法的参数值）来决定是否应用通知。
 
@@ -335,27 +335,27 @@ public class Audience{
 
 | AOP配置元素   | 用途
 |----
-| <aop:advisor>   | 定义AOP通知器   |
+| `<aop:advisor>`   | 定义AOP通知器   |
 |----
-| <aop:after>   | 定义AOP后置通知（不管被通知的方法是否执行成功）   |
+| `<aop:after>`   | 定义AOP后置通知（不管被通知的方法是否执行成功）   |
 |----
-| <aop:after-returning>   | 定义AOP返回通知   |
+| `<aop:after-returning>`   | 定义AOP返回通知   |
 |----
-| <aop:after-throwing>   | 定义AOP异常通知   |
+| `<aop:after-throwing>`   | 定义AOP异常通知   |
 |----
-| <aop:around>   | 定义AOP环绕通知   |
+| `<aop:around>`   | 定义AOP环绕通知   |
 |----
-| <aop:aspect>   | 定义一个切面   |
+| `<aop:aspect>`   | 定义一个切面   |
 |----
-| <aop:aspectj-autoproxy>   | 启用@AspectJ注解驱动的切面   |
+| `<aop:aspectj-autoproxy>`   | 启用@AspectJ注解驱动的切面   |
 |----
-| <aop:before>   | 定义一个AOP前置通知   |
+| `<aop:before>`   | 定义一个AOP前置通知   |
 |----
-| <aop:config>   | 顶层的AOP配置元素。大多数的<aop:*>元素必须包含在<aop:config>元素内   |
+| `<aop:config>`   | 顶层的AOP配置元素。大多数的<aop:*>元素必须包含在<aop:config>元素内   |
 |----
-| <aop:declare-parents>   | 以透明的方式为被通知的对象引入额外的接口   |
+| `<aop:declare-parents>`   | 以透明的方式为被通知的对象引入额外的接口   |
 |----
-| <aop:pointcut>   | 定义一个切点   |
+| `<aop:pointcut>`   | 定义一个切点   |
 |----
 
 来个栗子
