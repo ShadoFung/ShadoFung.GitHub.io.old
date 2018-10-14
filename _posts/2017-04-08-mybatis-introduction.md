@@ -94,3 +94,58 @@ SQL 映射文件有很少的几个顶级元素（按照它们应该被定义的�
 - `delete` – 映射删除语句
 - `select` – 映射查询语句
 
+#### select
+查询语句是 MyBatis 中最常用的元素之一，光能把数据存到数据库中价值并不大，如果还能重新取出来才有用，多数应用也都是查询比修改要频繁。对每个插入、更新或删除操作，通常对应多个查询操作。这是 MyBatis 的基本原则之一，也是将焦点和努力放到查询和结果映射的原因。简单查询的 select 元素是非常简单的。比如：
+
+	<select id="selectPerson" parameterType="int" resultType="hashmap">
+	  SELECT * FROM PERSON WHERE ID = #{id}
+	</select>
+这个语句被称作 selectPerson，接受一个 int（或 Integer）类型的参数，并返回一个 HashMap 类型的对象，其中的键是列名，值便是结果行中的对应值。
+
+注意参数符号：
+
+`#{id}`
+这就告诉 MyBatis 创建一个预处理语句参数，通过 JDBC，这样的一个参数在 SQL 中会由一个“?”来标识，并被传递到一个新的预处理语句中，就像这样：
+
+	// Similar JDBC code, NOT MyBatis…
+	String selectPerson = "SELECT * FROM PERSON WHERE ID=?";
+	PreparedStatement ps = conn.prepareStatement(selectPerson);
+	ps.setInt(1,id);
+
+下面就是 insert，update 和 delete 语句的示例：
+
+	<insert id="insertAuthor">
+	  insert into Author (id,username,password,email,bio)
+	  values (#{id},#{username},#{password},#{email},#{bio})
+	</insert>
+	
+	<update id="updateAuthor">
+	  update Author set
+	    username = #{username},
+	    password = #{password},
+	    email = #{email},
+	    bio = #{bio}
+	  where id = #{id}
+	</update>
+	
+	<delete id="deleteAuthor">
+	  delete from Author where id = #{id}
+	</delete>
+如前所述，插入语句的配置规则更加丰富，在插入语句里面有一些额外的属性和子元素用来处理主键的生成，而且有多种生成方式。
+
+首先，如果你的数据库支持自动生成主键的字段（比如 MySQL 和 SQL Server），那么你可以设置 useGeneratedKeys=”true”，然后再把 keyProperty 设置到目标属性上就OK了。例如，如果上面的 Author 表已经对 id 使用了自动生成的列类型，那么语句可以修改为:
+
+	<insert id="insertAuthor" useGeneratedKeys="true"
+	    keyProperty="id">
+	  insert into Author (username,password,email,bio)
+	  values (#{username},#{password},#{email},#{bio})
+	</insert>
+如果你的数据库还支持多行插入, 你也可以传入一个Authors数组或集合，并返回自动生成的主键。
+
+	<insert id="insertAuthor" useGeneratedKeys="true"
+	    keyProperty="id">
+	  insert into Author (username, password, email, bio) values
+	  <foreach item="item" collection="list" separator=",">
+	    (#{item.username}, #{item.password}, #{item.email}, #{item.bio})
+	  </foreach>
+	</insert>
