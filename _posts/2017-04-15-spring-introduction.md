@@ -378,24 +378,24 @@ public class Audience{
 
 通过XML将无注解的Audience声明为切面
 
-{% highlight html %}
-<aop:config>
-  <aop:aspect ref="audience">
-    <aop:before
-      pointcut ="execution(** concert.Performance.perform(..))"
-      method="sillenceCellPhones"/>
-    <aop:before
-      pointcut ="execution(** concert.Performance.perform(..))"
-      method="taskSeats"/>
-    <aop:after-returning
-      pointcut ="execution(** concert.Performance.perform(..))"
-      method="applause"/>
-    <aop:After-throwing
-        pointcut ="execution(** concert.Performance.perform(..))"
-        method="demanRefund"/>
-  </aop:aspect>
-</aop:config>
-{% endhighlight %}
+
+	<aop:config>
+	  <aop:aspect ref="audience">
+	    <aop:before
+	      pointcut ="execution(** concert.Performance.perform(..))"
+	      method="sillenceCellPhones"/>
+	    <aop:before
+	      pointcut ="execution(** concert.Performance.perform(..))"
+	      method="taskSeats"/>
+	    <aop:after-returning
+	      pointcut ="execution(** concert.Performance.perform(..))"
+	      method="applause"/>
+	    <aop:After-throwing
+	        pointcut ="execution(** concert.Performance.perform(..))"
+	        method="demanRefund"/>
+	  </aop:aspect>
+	</aop:config>
+
 
 AspectJ关于Spring AOP的AspectJ切点，最重要的一点就是Spring仅支持AspectJ切点指示器（pointcut designator）的一个子集。让我们回顾下，Spring是基于代理的，而某些切点表达式是与基于代理的AOP无关的。下表列出了Spring AOP所支持的AspectJ切点指示器。
 
