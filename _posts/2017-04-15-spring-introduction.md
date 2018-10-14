@@ -419,13 +419,14 @@ within()  | 限制连接点匹配指定的类型
 
 但是Bean有时需要使用spring容器本身的资源，这时你的Bean必须意识到Spring容器的存在。所以得使用Spring Aware，下面来看看Spring Aware提供的接口
 
-BeanNameAware  | 获得到容器中Bean的名称
----|---
-BeanFactory  | 获得当前的bean factory，这样可以调用容器的服务
-ApplicationContextAware*  | 当前application context，这样可以调用容器的服务
-MessageSourceAware  | 获得Message source
-ApplicationEventPublisherAware  | 应用时间发布器，可以发布时间，
-ResourceLoaderAware  | 获得资源加载器，可以获得外部资源文件
+| BeanNameAware  | 获得到容器中Bean的名称
+|---|---
+| BeanFactory  | 获得当前的bean factory，这样可以调用容器的服务
+| ApplicationContextAware*  | 当前application context，这样可以调用容器的服务
+| MessageSourceAware  | 获得Message source
+| ApplicationEventPublisherAware  | 应用时间发布器，可以发布时间，
+| ResourceLoaderAware  | 获得资源加载器，可以获得外部资源文件
+
 @TaskExecutor
 
 这样可以实现多线程和并发编程。通过@EnableAsync开启对异步任务的支持，并通过实际执行的Bean的方法始中使用@Async注解来声明其是一个异步任务
