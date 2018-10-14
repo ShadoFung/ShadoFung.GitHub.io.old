@@ -57,17 +57,17 @@ Spring定义了多种Bean作用域，可以基于这些作用域创建bean，包
 - 请求（Rquest）：在Web应用中，为每个请求创建一个bean实例。
 
 在代码里看起来是这样的：
-
-	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-	public class MyIsBean{...}
-
+{ highlight java }
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class MyIsBean{...}
+{ endhighlight }
 XML版本：  
-
-	<bean id="BEANID"
-	  class = "net.itxm.beans"
-	  scope="prototype"
-	>
-
+{ highlight html }
+<bean id="BEANID"
+  class = "net.itxm.beans"
+  scope="prototype"
+>
+{ endhighlight }
 在默认情况下，Spring应用上下文中所有bean都是作为以单例（singleton）的形式创建的。也就是说，不管给定的一个bean被注入到其他bean多少次，每次所注入的都是同一个实例。
 
 在大多数情况下，单例bean是很理想的方案。初始化和垃圾回收对象实例所带来的成本只留给一些小规模任务，在这些任务中，让对象保持无状态并且在应用中反复重用这些对象可能并不合理。
@@ -134,11 +134,13 @@ XML版本：
 
 `@Qualifier`注解是使用限定符的主要方式。它可以与`@Autowired`和`@Inject`协同使用，在注入的时候指定想要注入进去的是哪个bean。例如，我们想要确保要将IceCream注入到setDessert()之中：
 
-	@Autowired
-	@Qualifier("iceCream")
-	public void setDessert(Dessert dessert){
-	  this.dessert = dessert;
-	}
+{% highlight java %}
+@Autowired
+@Qualifier("iceCream")
+public void setDessert(Dessert dessert){
+  this.dessert = dessert;
+}
+{% endhighlight %}
 
 这是使用限定符的最简单的例子。为`@Qualifier`注解所设置的参数就是想要注入的bean的ID。所有使用`@Component`注解声明的类都会创建为bean，并且bean的ID为首字母变为小写的类名。因此，`@Qualifier(“iceCream”)`指向的是组件扫描时所创建的bean，并且这个bean是IceCream类的实例。
 
@@ -149,12 +151,14 @@ XML版本：
 这里的问题在于setDessert()方法上所指定的限定符与要注入的bean的名称是紧耦合的。对类名称的任意改动都会导致限定符失效。
 
 #### SpringEL
+
 - Value实现资源的注入  
 
 #### Bean的初始化和销毁
 
 - Java配置方式：initMethod和destoryMethod
 - 注解：@PostConstruct和@PreDestory
+
 #### Profile
 
 提供在不同的环境下使用不同的配置
@@ -180,6 +184,7 @@ Spring的事件需要遵循如下流程：
 - 自定义事件，集成ApplicationEvent
 - 定义事件监听器，实现ApplicationListener
 - 使用容器发布事件
+
 ### 关于AOP
 #### 名词介绍
 
@@ -328,15 +333,27 @@ public class Audience{
 
 **XML中声明切面**
 
-AOP配置元素	用途
-<aop:advisor>	定义AOP通知器
-<aop:after>	定义AOP后置通知（不管被通知的方法是否执行成功）
-<aop:after-returning>	定义AOP返回通知
-<aop:after-throwing>	定义AOP异常通知
-<aop:around>	定义AOP环绕通知
-<aop:aspect>	定义一个切面
-<aop:aspectj-autoproxy>	启用@AspectJ注解驱动的切面
-<aop:before>	定义一个AOP前置通知
-<aop:config>	顶层的AOP配置元素。大多数的<aop:*>元素必须包含在<aop:config>元素内
-<aop:declare-parents>	以透明的方式为被通知的对象引入额外的接口
-<aop:pointcut>	定义一个切点
+| AOP配置元素   | 用途
+|----
+| <aop:advisor>   | 定义AOP通知器   |
+|----
+| <aop:after>   | 定义AOP后置通知（不管被通知的方法是否执行成功）   |
+|----
+| <aop:after-returning>   | 定义AOP返回通知   |
+|----
+| <aop:after-throwing>   | 定义AOP异常通知   |
+|----
+| <aop:around>   | 定义AOP环绕通知   |
+|----
+| <aop:aspect>   | 定义一个切面   |
+|----
+| <aop:aspectj-autoproxy>   | 启用@AspectJ注解驱动的切面   |
+|----
+| <aop:before>   | 定义一个AOP前置通知   |
+|----
+| <aop:config>   | 顶层的AOP配置元素。大多数的<aop:*>元素必须包含在<aop:config>元素内   |
+|----
+| <aop:declare-parents>   | 以透明的方式为被通知的对象引入额外的接口   |
+|----
+| <aop:pointcut>   | 定义一个切点   |
+|----
