@@ -357,3 +357,95 @@ public class Audience{
 |----
 | <aop:pointcut>   | 定义一个切点   |
 |----
+
+来个栗子
+{ highlight java }
+public class Audience{
+  public void silenceCellPhones(){
+    System.out.println("Silencing cell phones");
+  }
+  public void taskSeats(){
+    System.out.println("Talking seats");
+  }
+  public void applause(){
+    System.out.println("CLAP CLAP CLAP!!!");
+  }
+  public void demandRefund(){
+    System.out.println("Demanding a refund");
+  }
+}
+{ endhighlight }
+
+通过XML将无注解的Audience声明为切面
+
+{ highlight html }
+<aop:config>
+  <aop:aspect ref="audience">
+    <aop:before
+      pointcut ="execution(** concert.Performance.perform(..))"
+      method="sillenceCellPhones"/>
+    <aop:before
+      pointcut ="execution(** concert.Performance.perform(..))"
+      method="taskSeats"/>
+    <aop:after-returning
+      pointcut ="execution(** concert.Performance.perform(..))"
+      method="applause"/>
+    <aop:After-throwing
+        pointcut ="execution(** concert.Performance.perform(..))"
+        method="demanRefund"/>
+  </aop:aspect>
+</aop:config>
+{ endhighlight }
+
+AspectJ关于Spring AOP的AspectJ切点，最重要的一点就是Spring仅支持AspectJ切点指示器（pointcut designator）的一个子集。让我们回顾下，Spring是基于代理的，而某些切点表达式是与基于代理的AOP无关的。下表列出了Spring AOP所支持的AspectJ切点指示器。
+
+Spring借助AspectJ的切点表达式语言来定义Spring切面
+
+AspectJ指示器  | 描　　述
+------------- | -------------
+arg()  | 限制连接点匹配参数为指定类型的执行方法
+@args()  | 限制连接点匹配参数由指定注解标注的执行方法
+execution()  | 用于匹配是连接点的执行方法
+this()  | 限制连接点匹配AOP代理的bean引用为指定类型的类
+target  | 限制连接点匹配目标对象为指定类型的类
+@target()  | 限制连接点匹配特定的执行对象，这些对象对应的类要具有指定类型的注解
+within()  | 限制连接点匹配指定的类型
+@within()  | 限制连接点匹配指定注解所标注的类型（当使用Spring AOP时，方法定义在由指定的注解所标注的类里）
+@annotation  | 限定匹配带有指定注解的连接点
+
+### Spring高级特性
+
+由于Spring特殊的依赖注入技巧，导致Bean之间没有耦合度。
+
+但是Bean有时需要使用spring容器本身的资源，这时你的Bean必须意识到Spring容器的存在。所以得使用Spring Aware，下面来看看Spring Aware提供的接口
+
+BeanNameAware  | 获得到容器中Bean的名称
+---|---
+BeanFactory  | 获得当前的bean factory，这样可以调用容器的服务
+ApplicationContextAware*  | 当前application context，这样可以调用容器的服务
+MessageSourceAware  | 获得Message source
+ApplicationEventPublisherAware  | 应用时间发布器，可以发布时间，
+ResourceLoaderAware  | 获得资源加载器，可以获得外部资源文件
+@TaskExecutor
+
+这样可以实现多线程和并发编程。通过@EnableAsync开启对异步任务的支持，并通过实际执行的Bean的方法始中使用@Async注解来声明其是一个异步任务
+
+@Scheduled 计划任务
+
+首先通过在配置类注解@EnableScheduling来开启对计划任务的支持，然后在要执行计划任务的方法上注解@Scheduled，声明这是一个计划任务
+
+@Conditional
+
+根据满足某一个特定条件创建一个特定的Bean。
+
+组合注解与元注解
+
+元注解就是可以注解到别的注解上的注解，被注解的注解称之为组合注解，组合注解具备注解其上的元注解的功能。
+
+@Enable*注解的工作原理
+
+通过观察这些@Enable*注解的源码，我们发现所有的注解都有一个@Import注解，@Import是用来导入配置类的，这也就意外着这些自动开启的实现其实是导入了一些自动配置的Bean。这些导入配置的方式主要范围以下三种类型：
+
+第一类：直接导入配置类
+第二类：依据条件选择配置类
+第三类：动态注册Bean
